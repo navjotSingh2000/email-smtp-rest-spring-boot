@@ -15,10 +15,10 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Value("${TO.EMAIL}")
-    private  String  TO_EMAIL;
-    @Value("${TO.PHONE}")
-    private String TO_PHONE;
+    @Value("${TO_EMAIL}")
+    private  String SEND_TO_EMAIL;
+    @Value("${TO_PHONE}")
+    private String SEND_TO_PHONE;
 
     public boolean sendSimpleEmail(String name, String email, String subject, String message)
     {
@@ -34,7 +34,7 @@ public class EmailService {
             String email_subject = name == "" ? "New message received on Portfolio" :
                     "New message received from " + name + " on Portfolio";
 
-            simpleMail.setTo(TO_EMAIL, TO_PHONE);
+            simpleMail.setTo(SEND_TO_EMAIL, SEND_TO_PHONE);
             simpleMail.setSubject(email_subject);
             simpleMail.setText("Sender Name : " + sender_name + "\r\n" +
                     "Sender Email : " + sender_email + "\r\n" +
